@@ -19,11 +19,25 @@ const Search = () => {
       });
 
       // Set the returned data from the API request to results array
-      setResults(data);
+      setResults(data.query.search);
     };
 
-    search();
+    // Make an API request only when the user do a search (by default 'term' is equal to an empty string, which means we'll have an error if we make an API request)
+    if (term) {
+      search();
+    }
   }, [term]);
+
+  const renderedResults = results.map((result) => {
+    return (
+      <div key={result.pageid} className="item">
+        <div className="content">
+          <div className="header">{result.title}</div>
+          {result.snippet}
+        </div>
+      </div>
+    );
+  });
 
   return (
     <div>
@@ -37,6 +51,7 @@ const Search = () => {
           />
         </div>
       </div>
+      <div className="ui celled list">{renderedResults}</div>
     </div>
   );
 };
