@@ -22,10 +22,13 @@ const Search = () => {
       setResults(data.query.search);
     };
 
-    // Make an API request only when the user do a search (by default 'term' is equal to an empty string, which means we'll have an error if we make an API request)
-    if (term) {
-      search();
-    }
+    // Make an API request every .5s while the user typing
+    const timeoutId = setTimeout(() => {
+      // Make an API request only when the user do a search (by default 'term' is equal to an empty string, which means we'll have an error if we make an API request)
+      if (term) {
+        search();
+      }
+    }, 500);
   }, [term]);
 
   const renderedResults = results.map((result) => {
