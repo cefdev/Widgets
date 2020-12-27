@@ -29,6 +29,12 @@ const Search = () => {
         search();
       }
     }, 500);
+
+    // CleanUp Function Provided By useEffect()
+    // Clear the timer whenever 'term' changed (Whenever the user type something)
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [term]);
 
   const renderedResults = results.map((result) => {
