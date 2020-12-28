@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Dropdown = ({ options, selected, onSelectedChange }) => {
   // State to track if the dropdown is open or close
   const [open, setOpen] = useState(false);
+
+  // Run useEffect only once at the begining when the app started.
+  // Fucntionality to close the dropdown when we click somewhere else on the body
+  useEffect(() => {
+    document.body.addEventListener("click", (event) => {
+      console.log(event.target);
+      setOpen(false);
+    });
+  }, []);
 
   const renderedOptions = options.map((option) => {
     // Hide the selected color from the dropdown options
