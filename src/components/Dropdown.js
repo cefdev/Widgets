@@ -1,14 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Dropdown = ({ options, selected, onSelectedChange }) => {
   // State to track if the dropdown is open or close
   const [open, setOpen] = useState(false);
 
+  // We'll assign this Ref to this component first parent ( The one that has a class "ui form")
+  const ref = useRef();
+
   // Run useEffect only once at the begining when the app started.
   // Fucntionality to close the dropdown when we click somewhere else on the body
   useEffect(() => {
     document.body.addEventListener("click", (event) => {
-      console.log(event.target);
+      // If the element we clicked on is inside our component
+      if (ref.current.contains(event.target)) {
+        return;
+      }
+      // If not, set 'open' to false
       setOpen(false);
     });
   }, []);
@@ -31,7 +38,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   });
 
   return (
-    <div className="ui form">
+    <div ref={ref} className="ui form">
       <div className="field">
         <label className="label">Select a Color</label>
         <div
