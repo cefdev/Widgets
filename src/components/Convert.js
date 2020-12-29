@@ -25,8 +25,16 @@ const Convert = ({ language, text }) => {
       setTranslated(data.data.translations[0].translatedText);
     };
 
-    // Call it to make the API request
-    doTranslation();
+    // Make an API request only after the user stops typing after .5s
+    const timeoutId = setTimeout(() => {
+      doTranslation();
+    }, 500);
+
+    // CleanUp Function Provided By useEffect()
+    // Clear the timer when the user stops typing
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [language, text]);
 
   return (
