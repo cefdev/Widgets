@@ -3,16 +3,16 @@ import Dropdown from "./Dropdown";
 
 const options = [
   {
-    label: "Afrikaans",
-    value: "af",
-  },
-  {
     label: "Arabic",
     value: "ar",
   },
   {
-    label: "Hindi",
-    value: "hi",
+    label: "Russian",
+    value: "ru",
+  },
+  {
+    label: "Spanish",
+    value: "es",
   },
 ];
 
