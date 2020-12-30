@@ -4,14 +4,14 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
   // State to track if the dropdown is open or close
   const [open, setOpen] = useState(false);
 
-  // We'll assign this Ref to this component first parent ( The one that has a class "ui form")
+  // We'll assign this Ref to this component first parent (The one that has a class "ui form")
   const ref = useRef();
 
   // Run useEffect only once at the begining when the app started.
   // Fucntionality to close the dropdown when we click somewhere else on the body
   useEffect(() => {
     document.body.addEventListener("click", (event) => {
-      // If the element we clicked on is inside our component
+      // If the element we clicked on is inside our component, do nothing
       if (ref.current.contains(event.target)) {
         return;
       }

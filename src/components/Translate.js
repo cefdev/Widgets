@@ -8,6 +8,10 @@ const options = [
     value: "ar",
   },
   {
+    label: "French",
+    value: "fr",
+  },
+  {
     label: "Russian",
     value: "ru",
   },
